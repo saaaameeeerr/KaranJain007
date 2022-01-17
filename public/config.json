@@ -17,12 +17,12 @@
             "inArguments": [
                 {
                   "email": "{{Contact.Default.EmailAddress}}",
-                  "to": "{{Contact.Attribute.Custom_SMS.twilioNumber}}" 
+                  "to": "{{Contact.Attribute.TwilioV1.TwilioNumber}}" 
                   
                 }               
             ],
             "outArguments": [],
-            "url": "https://twilliocustomactiviti.herokuapp.com/journeybuilder/execute/",
+            "url": "https://twilliocustomactivitiy.herokuapp.com/journeybuilder/execute/",
             "verb": "POST",
             "body": "",
             "format": "json",
@@ -36,7 +36,7 @@
     "configurationArguments": {
       "applicationExtensionKey": "5d596207-02f0-4894-80f8-3d8f5f4f7f7e",
        "save": {
-           "url": "https://twilliocustomactiviti.herokuapp.com/journeybuilder/save/",
+           "url": "https://twilliocustomactivitiy.herokuapp.com/journeybuilder/save/",
             "verb": "POST",
             "body": "",
             "format": "json",
@@ -44,7 +44,7 @@
             "timeout": 3000 
        },
        "publish": {
-           "url": "https://twilliocustomactiviti.herokuapp.com/journeybuilder/publish/",
+           "url": "https://twilliocustomactivitiy.herokuapp.com/journeybuilder/publish/",
             "verb": "POST",
             "body": "",
             "format": "json",
@@ -52,7 +52,7 @@
             "timeout": 3000
        },
        "validate": {
-           "url": "https://twilliocustomactiviti.herokuapp.com/journeybuilder/validate/",
+           "url": "https://twilliocustomactivitiy.herokuapp.com/journeybuilder/validate/",
             "verb": "POST",
             "body": "",
             "format": "json",
@@ -60,7 +60,7 @@
             "timeout": 3000
        },
        "stop": {
-           "url": "https://twilliocustomactiviti.herokuapp.com/journeybuilder/stop",
+           "url": "https://twilliocustomactivitiy.herokuapp.com/journeybuilder/stop",
             "verb": "POST",
             "body": "",
             "format": "json",
