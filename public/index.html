@@ -41,7 +41,7 @@
     <hr>
     <div class="form-group">
         <div><label for="messageBody">Create message body:</label></div>
-        <input class="form-control" id="messageBody" type="text" name="messageBody" value="Hey {{Contact.Attribute.TwilioV1.TwilioNumber}} {{Contact.Attribute.TwilioV1.name}} ">        
+        <input class="form-control" id="messageBody" type="text" name="messageBody" value="Hey {{Contact.Attribute.TwilioV1.name}} , thanks for joining Twilio with number:{{Contact.Attribute.TwilioV1.TwilioNumber}}. Here are your details :  First Name: {{Contact.Attribute.TwilioV1.name}}, Email:{{Contact.Attribute.TwilioV1.EmailAddress}}, age: {{Contact.Attribute.TwilioV1.age}}>        
     </div>           
     <div class="form-group">
         <div><label for="messagingService">Messaging Service SID:</label></div>
