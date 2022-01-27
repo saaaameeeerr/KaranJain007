@@ -188,7 +188,6 @@ exports.execute = function (req, res) {
                         headers: { 'content-type': 'application/json', 'Authorization': 'Bearer ' + accessToken },
                         url: restURL + '/data/v1/async/dataextensions/key:2FB422BA-30C8-4DC4-A325-060AB445D0AE/rows',
                         body: TrackingData,
-                        console.log("put me aa gaya");
                         json: true
                     }, function(error, response, body) {
                         console.log(error);
