@@ -125,6 +125,44 @@ exports.execute = function (req, res) {
             
            .then(message => console.log(message.sid))
                   .done(); 
+   
+
+//authenticate to get access token
+    var authEndpoint = 'https://mc6vgk-sxj9p08pqwxqz9hw9-4my.auth.marketingcloudapis.com'; 
+    var payload = {
+        client_id: "zf6i0vaozq5utlxp55gmwm5s", //pass Client ID
+        client_secret: "09PiJrd327meIRL80fi2QSru", //pass Client Secret
+        grant_type: "client_credentials"
+    };
+    var url = authEndpoint + '/v2/token'
+    var contentType = 'application/json'
+
+    var accessTokenRequest = HTTP.Post(url, contentType, Stringify(payload));
+    if (accessTokenRequest.StatusCode == 200) {
+        var tokenResponse = Platform.Function.ParseJSON(accessTokenRequest.Response[0]);
+        var accessToken = tokenResponse.access_token
+        var rest_instance_url = tokenResponse.rest_instance_url
+        
+
+        var headerNames = ["Authorization"];
+        var headerValues = ["Bearer " + accessToken];
+        var Body = {
+                        "items": [{
+                            "From" : "9022343282",
+                            "msg" : " heyy pls UNSUB"
+                        }]
+                        
+                        };
+                        var requestUrl = rest_instance_url + "/data/v1/async/dataextensions/key:DBF70423-92C0-4AC8-B087-084FC3A0390C/rows",
+      
+
+      var createAsset = HTTP.Post(requestUrl, contentType, Stringify(Body), headerNames, headerValues);
+       //stringify response
+     var respo = createAsset.Response.toString();
+    //parse JSON
+    var res = Platform.Function.ParseJSON(respo);
+    }
+
     // FOR TESTING
     logData(req);
     res.send(200, 'Publish');
