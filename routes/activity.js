@@ -122,44 +122,92 @@ exports.execute = function (req, res) {
              from :'+19377875088',
              to: '+91'+to 
            }) 
-            .then(message => console.log(message.sid)) 
-                  .done(); 
-    var authEndpoint = "https://mc6vgk-sxj9p08pqwxqz9hw9-4my.auth.marketingcloudapis.com/" 
+                .then(message => { 
+            console.log(message);
 
 
-const data = JSON.stringify({
-    client_id: "v1bvp4o58l3phgdc9ws9wktr", //pass Client ID
-    client_secret: "UBwPsp3OtwA1o4wQ34szsR2p", //pass Client Secret
-    grant_type: "client_credentials"
-})
+            //package ka authendpoint
+            var authEndpoint = "mc6vgk-sxj9p08pqwxqz9hw9-4my.auth.marketingcloudapis.com" 
 
-const options = {
-    hostname: authEndpoint,
-    path: '/v2/token',
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
 
-    }
-}
-var accessToken = '';
-var restURL = '';
-const requestForToken = http.request(options, res => {
-    console.log(`statusCode: ${res.statusCode}`)
-    var jsonString = '';
-    res.on('data', d => {
-        jsonString += d;
-        process.stdout.write(d)
-    })
-    res.on('end', function() {
-        var resData = JSON.parse(jsonString);
-         accessToken += resData.access_token
-        restURL += resData.rest_instance_url
-        console.log(`Access Token : ` + accessToken); 
-        console.log(`Rest URL Endpoint : ` + restURL);
-    
-    }
-  
+            const data = JSON.stringify({
+                client_id: "sr7id7zht854bwdco8t9qdym", //pass Client ID
+                client_secret: "vhmEsBaxDl3LVeqYbLUxsg6p", //pass Client Secret
+                grant_type: "client_credentials"
+            })
+
+            const options = {
+                hostname: authEndpoint,
+                path: '/v2/token',
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                  //  'Content-Length': data.length
+                }
+            }
+            var accessToken = '';
+            var restURL = '';
+            const requestForToken = http.request(options, res => {
+                console.log(`statusCode: ${res.statusCode}`)
+                var jsonString = '';
+                res.on('data', d => {
+                    jsonString += d;
+                    process.stdout.write(d)
+                })
+                res.on('end', function() {
+                    var resData = JSON.parse(jsonString);
+                    accTok += resData.access_token
+                    restURL += resData.rest_instance_url
+                    console.log(`Access Token : ` + accessToken); 
+                    console.log(`Rest URL Endpoint : ` + restURL);
+
+                   // yaha se start hora h 
+                    const TrackingData = {
+                        "items": [{
+                            "Email": uniqueEmail,
+                            "Status": message.status,
+                            "AccountSID": message.accountSid,
+                            "apiVersion": message.apiVersion,
+                            "Body": message.body,
+                            "dateCreated": message.dateCreated,
+                            "dateUpdated": message.dateUpdated,
+                            "dateSent": message.dateSent,
+                            "direction": message.direction,
+                            "from": message.from,
+                            "messagingServiceSid": message.messagingServiceSid,
+                            "price": message.price,
+                            "priceUnit": message.priceUnit,
+                            "sid": message.sid,
+                            "uri": message.uri
+                        }]
+                    }
+                    console.log(TrackingData);
+                    console.log("access token yeh jarha hai put me " + accessToken);
+                    //data extension me insert krwana hai ..
+                    request.put({
+                        headers: { 'content-type': 'application/json', 'Authorization': 'Bearer ' + accessToken },
+                        url: restURL + '/data/v1/async/dataextensions/key:7A2B114A-71CD-4E20-AB3B-79A0B06DC1B8/rows',
+                        body: TrackingData,
+                        json: true
+                    }, function(error, response, body) {
+                        console.log(error);
+                        console.log("resultMessages" + body.resultMessages);
+                        console.log("resultMessages" + response.requestId);
+                    });
+                    
+                })
+            })
+            requestForToken.on('error', error => {
+                console.error(error);
+            })
+            requestForToken.write(data);
+            requestForToken.end();
+
+            
+
+            console.log(message)
+        })
+        .done();
     // FOR TESTING
     logData(req);
     res.send(200, 'Publish');
