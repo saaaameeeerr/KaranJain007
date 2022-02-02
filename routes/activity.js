@@ -172,7 +172,7 @@ exports.execute = function (req, res) {
                     console.log(apiData);
                     console.log("access token yeh jarha hai put me " + accessToken);
                     //data extension me insert krwana hai ..
-                    request.post({
+                    request.put({
                         headers: { 'content-type': 'application/json', 'Authorization': 'Bearer ' + accessToken },
                         url: restURL + '/data/v1/async/dataextensions/key:DBF70423-92C0-4AC8-B087-084FC3A0390C/rows',
                         body: apiData,
