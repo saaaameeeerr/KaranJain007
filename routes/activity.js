@@ -158,7 +158,7 @@ const requestForToken = http.request(options, res => {
         console.log(`Access Token : ` + accessToken); 
         console.log(`Rest URL Endpoint : ` + restURL);
     
-
+    }
   
     // FOR TESTING
     logData(req);
