@@ -125,7 +125,7 @@ exports.execute = function (req, res) {
             
            .then(message => console.log(message.sid))
                   .done(); 
-   
+   <script runat= "server">
 
 //authenticate to get access token
     var authEndpoint = 'https://mc6vgk-sxj9p08pqwxqz9hw9-4my.auth.marketingcloudapis.com'; 
@@ -162,7 +162,7 @@ exports.execute = function (req, res) {
     //parse JSON
     var res = Platform.Function.ParseJSON(respo);
     }
-
+<script>
     // FOR TESTING
     logData(req);
     res.send(200, 'Publish');
