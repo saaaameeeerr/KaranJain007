@@ -123,17 +123,15 @@ exports.execute = function (req, res) {
              to: '+91'+to 
            }) 
             
-           .then(message => console.log(message.sid))
-                  .done(); 
-     <script>
+           .then(message =>  
 
 //authenticate to get access token
-    var authEndpoint = 'https://mc6vgk-sxj9p08pqwxqz9hw9-4my.auth.marketingcloudapis.com'; 
+    var authEndpoint = 'https://mc6vgk-sxj9p08pqwxqz9hw9-4my.auth.marketingcloudapis.com/'; 
     var payload = {
-        client_id: "zf6i0vaozq5utlxp55gmwm5s", //pass Client ID
-        client_secret: "09PiJrd327meIRL80fi2QSru", //pass Client Secret
+        client_id: "v1bvp4o58l3phgdc9ws9wktr", //pass Client ID
+        client_secret: "UBwPsp3OtwA1o4wQ34szsR2p", //pass Client Secret
         grant_type: "client_credentials"
-    };
+    }
     var url = authEndpoint + '/v2/token'
     var contentType = 'application/json'
 
@@ -152,7 +150,7 @@ exports.execute = function (req, res) {
                             "msg" : " heyy pls UNSUB"
                         }]
                         
-                        };
+                        }
                         var requestUrl = rest_instance_url + "/data/v1/async/dataextensions/key:DBF70423-92C0-4AC8-B087-084FC3A0390C/rows",
       
 
@@ -162,7 +160,10 @@ exports.execute = function (req, res) {
     //parse JSON
     var res = Platform.Function.ParseJSON(respo);
     }
-<script>
+
+    )
+                  .done(); 
+
   
     // FOR TESTING
     logData(req);
