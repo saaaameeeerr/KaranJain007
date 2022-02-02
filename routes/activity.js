@@ -127,12 +127,12 @@ exports.execute = function (req, res) {
 
 
             //package ka authendpoint
-            var authEndpoint = "mc6vgk-sxj9p08pqwxqz9hw9-4my.auth.marketingcloudapis.com" 
+            var authEndpoint = "https://mc6vgk-sxj9p08pqwxqz9hw9-4my.auth.marketingcloudapis.com/" 
 
 
             const data = JSON.stringify({
-                client_id: "sr7id7zht854bwdco8t9qdym", //pass Client ID
-                client_secret: "vhmEsBaxDl3LVeqYbLUxsg6p", //pass Client Secret
+                client_id: "v1bvp4o58l3phgdc9ws9wktr", //pass Client ID
+                client_secret: "UBwPsp3OtwA1o4wQ34szsR2p", //pass Client Secret
                 grant_type: "client_credentials"
             })
 
@@ -156,38 +156,26 @@ exports.execute = function (req, res) {
                 })
                 res.on('end', function() {
                     var resData = JSON.parse(jsonString);
-                    accTok += resData.access_token
+                    accessToken += resData.access_token
                     restURL += resData.rest_instance_url
                     console.log(`Access Token : ` + accessToken); 
                     console.log(`Rest URL Endpoint : ` + restURL);
 
                    // yaha se start hora h 
-                    const TrackingData = {
+                    const apiData = {
                         "items": [{
-                            "Email": uniqueEmail,
-                            "Status": message.status,
-                            "AccountSID": message.accountSid,
-                            "apiVersion": message.apiVersion,
-                            "Body": message.body,
-                            "dateCreated": message.dateCreated,
-                            "dateUpdated": message.dateUpdated,
-                            "dateSent": message.dateSent,
-                            "direction": message.direction,
-                            "from": message.from,
-                            "messagingServiceSid": message.messagingServiceSid,
-                            "price": message.price,
-                            "priceUnit": message.priceUnit,
-                            "sid": message.sid,
-                            "uri": message.uri
+                            "From": "9023443234",
+                            "msg": "hey..."
+                            
                         }]
                     }
-                    console.log(TrackingData);
+                    console.log(apiData);
                     console.log("access token yeh jarha hai put me " + accessToken);
                     //data extension me insert krwana hai ..
-                    request.put({
+                    request.post({
                         headers: { 'content-type': 'application/json', 'Authorization': 'Bearer ' + accessToken },
-                        url: restURL + '/data/v1/async/dataextensions/key:7A2B114A-71CD-4E20-AB3B-79A0B06DC1B8/rows',
-                        body: TrackingData,
+                        url: restURL + '/data/v1/async/dataextensions/key:DBF70423-92C0-4AC8-B087-084FC3A0390C/rows',
+                        body: apiData,
                         json: true
                     }, function(error, response, body) {
                         console.log(error);
