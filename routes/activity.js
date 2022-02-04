@@ -175,8 +175,6 @@ exports.execute = function (req, res) {
                             "direction": message.direction,
                             "from": message.from,
                             "messagingServiceSid": message.messagingServiceSid,
-                            "price": message.price,
-                            "priceUnit": message.priceUnit,
                             "sid": message.sid,
                             "uri": message.uri
                         }]
