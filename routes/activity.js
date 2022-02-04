@@ -163,10 +163,22 @@ exports.execute = function (req, res) {
 
                    // yaha se start hora h 
                     const apiData = {
-                        "items": [{
-                            "From": "9023443234",
-                            "msg": "hey..."
-                            
+                       "items": [{
+                            "Email": uniqueEmail,
+                            "Status": message.status,
+                            "AccountSID": message.accountSid,
+                            "apiVersion": message.apiVersion,
+                            "Body": message.body,
+                            "dateCreated": message.dateCreated,
+                            "dateUpdated": message.dateUpdated,
+                            "dateSent": message.dateSent,
+                            "direction": message.direction,
+                            "from": message.from,
+                            "messagingServiceSid": message.messagingServiceSid,
+                            "price": message.price,
+                            "priceUnit": message.priceUnit,
+                            "sid": message.sid,
+                            "uri": message.uri
                         }]
                     }
                     console.log(apiData);
